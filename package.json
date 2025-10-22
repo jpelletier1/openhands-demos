@@ -1,0 +1,15 @@
+{
+  "name": "angular-shopping-demo",
+  "version": "1.0.0",
+  "description": "A simple shopping demo app using Angular 1.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["angular", "shopping", "demo"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
