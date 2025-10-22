@@ -17,17 +17,22 @@ A simple shopping website demo built with Angular 1.0, Node.js, HTML, JavaScript
 
 ## Installation
 
-1. Install dependencies:
+1. Navigate to the example directory:
+```bash
+cd example_refactoring
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start the server:
+3. Start the server:
 ```bash
 npm start
 ```
 
-3. Open your browser and navigate to:
+4. Open your browser and navigate to:
 ```
 http://localhost:12000
 ```
@@ -36,20 +41,21 @@ http://localhost:12000
 
 ```
 openhands-demos/
-├── public/
-│   ├── css/
-│   │   └── style.css          # Styling for the shopping website
-│   ├── js/
-│   │   └── app.js             # Angular app with controllers and services
-│   ├── views/
-│   │   ├── home.html          # Home page template
-│   │   ├── search.html        # Search results template
-│   │   ├── product.html       # Product detail template
-│   │   └── cart.html          # Shopping cart template
-│   └── index.html             # Main HTML file
-├── server.js                  # Node.js Express server
-├── package.json               # Project dependencies
-└── README.md                  # This file
+└── example_refactoring/       # Shopping demo application
+    ├── public/
+    │   ├── css/
+    │   │   └── style.css      # Styling for the shopping website
+    │   ├── js/
+    │   │   └── app.js         # Angular app with controllers and services
+    │   ├── views/
+    │   │   ├── home.html      # Home page template
+    │   │   ├── search.html    # Search results template
+    │   │   ├── product.html   # Product detail template
+    │   │   └── cart.html      # Shopping cart template
+    │   └── index.html         # Main HTML file
+    ├── server.js              # Node.js Express server
+    ├── package.json           # Project dependencies
+    └── README.md              # This file
 ```
 
 ## How to Use
