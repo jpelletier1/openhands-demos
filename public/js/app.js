@@ -1,6 +1,6 @@
-var app = angular.module('shoppingApp', []);
+var app = angular.module('shoppingApp', ['ngRoute']);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'views/home.html',
@@ -53,7 +53,12 @@ app.factory('ProductService', function() {
       return products;
     },
     getProductById: function(id) {
-      return products.filter(function(p) { return p.id == id; })[0];
+      for (var i = 0; i < products.length; i++) {
+        if (products[i].id == id) {
+          return products[i];
+        }
+      }
+      return null;
     },
     searchProducts: function(query) {
       if (!query) return products;
@@ -141,13 +146,15 @@ app.controller('SearchController', function($scope, $location, $routeParams, Pro
 });
 
 app.controller('ProductController', function($scope, $routeParams, $location, ProductService, CartService) {
-  var productId = $routeParams.id;
+  var productId = parseInt($routeParams.id);
   $scope.product = ProductService.getProductById(productId);
   
   if (!$scope.product) {
     $location.path('/');
     return;
   }
+
+  $scope.added = false;
 
   $scope.addToCart = function() {
     CartService.addToCart($scope.product);
