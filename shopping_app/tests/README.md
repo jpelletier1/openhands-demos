@@ -62,6 +62,19 @@ Run tests with coverage report:
 npm run test:coverage
 ```
 
+Run tests and view results in browser:
+
+```bash
+npm run test:browser
+```
+
+This command runs all tests and displays the results in a beautiful HTML interface:
+- Starts a web server on port 12001
+- Displays summary cards showing total tests, pass/fail counts, pass rate, and duration
+- Lists all individual test cases with their status and execution time
+- Shows green indicators for passed tests
+- Access the results at http://localhost:12001
+
 ## Test Configuration
 
 The tests are configured in `package.json` with the following settings:

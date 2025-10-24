@@ -63,6 +63,17 @@ To run tests with coverage:
 npm run test:coverage
 ```
 
+To run tests and view results in a browser:
+
+```bash
+npm run test:browser
+```
+
+This will run all tests and start a server on port 12001 that displays a beautiful HTML report with:
+- Test summary (total, passed, failed, pass rate, duration)
+- Individual test results with status and timing
+- Real-time results viewable at http://localhost:12001
+
 Note: The server must be running on port 12000 before running tests. Start the server in a separate terminal with `npm start`.
 
 For more details about the tests, see [tests/README.md](tests/README.md).
@@ -85,6 +96,7 @@ shopping_app/
 ├── tests/
 │   ├── cart.integration.test.js   # Integration tests for shopping cart
 │   └── README.md                  # Test documentation
+├── run-tests-browser.js           # Script to run tests with browser results viewer
 ├── server.js                      # Node.js Express server
 ├── package.json                   # Project dependencies
 └── README.md                      # This file
