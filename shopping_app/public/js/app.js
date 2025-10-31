@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
       templateUrl: 'views/cart.html',
       controller: 'CartController'
     })
+    .when('/pricing', {
+      templateUrl: 'views/pricing.html',
+      controller: 'PricingController'
+    })
     .otherwise({
       redirectTo: '/'
     });
@@ -188,5 +192,98 @@ app.controller('CartController', function($scope, $location, CartService) {
 
   $scope.continueShopping = function() {
     $location.path('/');
+  };
+});
+
+app.controller('PricingController', function($scope, $location) {
+  $scope.pricingPlans = [
+    {
+      name: 'Basic',
+      price: 9.99,
+      period: 'month',
+      description: 'Perfect for casual shoppers',
+      buttonText: 'Get Started',
+      featured: false,
+      features: [
+        { name: 'Up to 10 orders per month', included: true },
+        { name: 'Basic customer support', included: true },
+        { name: 'Standard shipping', included: true },
+        { name: 'Order tracking', included: true },
+        { name: 'Priority support', included: false },
+        { name: 'Express shipping', included: false },
+        { name: 'Advanced analytics', included: false }
+      ]
+    },
+    {
+      name: 'Pro',
+      price: 19.99,
+      period: 'month',
+      description: 'Great for regular shoppers',
+      buttonText: 'Choose Pro',
+      featured: true,
+      features: [
+        { name: 'Unlimited orders', included: true },
+        { name: 'Priority customer support', included: true },
+        { name: 'Free express shipping', included: true },
+        { name: 'Advanced order tracking', included: true },
+        { name: 'Exclusive deals', included: true },
+        { name: 'Return protection', included: true },
+        { name: 'Advanced analytics', included: false }
+      ]
+    },
+    {
+      name: 'Enterprise',
+      price: 49.99,
+      period: 'month',
+      description: 'For businesses and power users',
+      buttonText: 'Go Enterprise',
+      featured: false,
+      features: [
+        { name: 'Unlimited orders', included: true },
+        { name: '24/7 dedicated support', included: true },
+        { name: 'Free express shipping', included: true },
+        { name: 'Advanced order tracking', included: true },
+        { name: 'Exclusive deals', included: true },
+        { name: 'Return protection', included: true },
+        { name: 'Advanced analytics', included: true },
+        { name: 'API access', included: true },
+        { name: 'Custom integrations', included: true }
+      ]
+    }
+  ];
+
+  $scope.faqs = [
+    {
+      question: 'Can I change my plan anytime?',
+      answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.',
+      open: false
+    },
+    {
+      question: 'Is there a free trial?',
+      answer: 'We offer a 14-day free trial for all plans. No credit card required to get started.',
+      open: false
+    },
+    {
+      question: 'What payment methods do you accept?',
+      answer: 'We accept all major credit cards, PayPal, and bank transfers for enterprise customers.',
+      open: false
+    },
+    {
+      question: 'Can I cancel anytime?',
+      answer: 'Yes, you can cancel your subscription at any time. You will continue to have access until the end of your billing period.',
+      open: false
+    }
+  ];
+
+  $scope.selectPlan = function(plan) {
+    alert('You selected the ' + plan.name + ' plan for $' + plan.price + '/' + plan.period + '. This is a demo - no actual purchase will be made.');
+  };
+
+  $scope.toggleFaq = function(faq) {
+    faq.open = !faq.open;
+  };
+
+  $scope.contactSales = function() {
+    alert('Contact our sales team at sales@shopdemo.com or call 1-800-SHOP-NOW. This is a demo contact form.');
   };
 });
