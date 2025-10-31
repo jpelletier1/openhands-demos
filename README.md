@@ -4,10 +4,14 @@ A collection of example use cases demonstrating the capabilities of [OpenHands](
 
 ## Use Cases
 
-### example_refactoring/
+### Angular 1.2 Refactoring
+Path: `example_refactoring/`
+
 A shopping website built with Angular 1.0, designed to demonstrate AI-powered code refactoring and modernization.
 
 ### PR reviews
+Path: `.github/workflows/pr-review.yml`
+
 This repo is configured to use the OpenHands Agent SDK to perform code reviews. Simply add the `review-this` label to PRs in this repo to demonstrate the feature.
 
 ## Getting Started
