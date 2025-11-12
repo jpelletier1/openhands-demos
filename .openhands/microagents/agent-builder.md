@@ -28,4 +28,8 @@ You can then proceed to build a technical implementation plan based on the user 
 - A visual representation of how the agent should work based on the SDK_PLAN.md. This should look like a flow diagram with nodes and edges. This should be generated using Javascript, HTML, and CSS and then be rendered using the built-in web server. Store this in the plan/ directory.
 
 # Implementing the Plan
-After the plan is generated, please ask the user if they are ready to generate the SDK implementation. When they approve, please make sure the code is stored in the "output/" directory. Make sure the code provides logging that a user can see in the terminal. Ideally, the SDK is a single python file.
+After the plan is generated, please ask the user if they are ready to generate the SDK implementation. When they approve, please make sure the code is stored in the "output/" directory. Make sure the code provides logging that a user can see in the terminal. Ideally, the SDK is a single python file. 
+
+Additional guidelines:
+- Unless the user has specified otherwise, the default LLM to use is: openhands/claude-sonnet-4-5-20250929. This can be configured via the "LLM_BASE_MODE" environment variable.
+- The LLM API Key should be stored as an environment variable named "LLM_API_KEY"
