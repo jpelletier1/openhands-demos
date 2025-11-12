@@ -1,0 +1,54 @@
+<div class="pricing-page">
+  <div class="pricing-header">
+    <h2>Choose Your Plan</h2>
+    <p>Select the perfect plan for your shopping needs</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card" ng-repeat="plan in pricingPlans" ng-class="{'featured': plan.featured}">
+      <div class="plan-header">
+        <h3>{{plan.name}}</h3>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">{{plan.price}}</span>
+          <span class="period">/{{plan.period}}</span>
+        </div>
+        <p class="plan-description">{{plan.description}}</p>
+      </div>
+      
+      <div class="plan-features">
+        <ul>
+          <li ng-repeat="feature in plan.features" ng-class="{'included': feature.included}">
+            <span class="feature-icon">{{feature.included ? '✓' : '✗'}}</span>
+            {{feature.name}}
+          </li>
+        </ul>
+      </div>
+      
+      <div class="plan-action">
+        <button class="select-plan-btn" ng-class="{'featured-btn': plan.featured}" ng-click="selectPlan(plan)">
+          {{plan.buttonText}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item" ng-repeat="faq in faqs">
+      <h4 ng-click="toggleFaq(faq)" ng-class="{'active': faq.open}">
+        {{faq.question}}
+        <span class="faq-toggle">{{faq.open ? '−' : '+'}}</span>
+      </h4>
+      <div class="faq-answer" ng-show="faq.open">
+        <p>{{faq.answer}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-contact">
+    <h3>Need a Custom Plan?</h3>
+    <p>Contact our sales team for enterprise solutions and custom pricing.</p>
+    <button class="contact-btn" ng-click="contactSales()">Contact Sales</button>
+  </div>
+</div>
