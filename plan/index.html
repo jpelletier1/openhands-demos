@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Frontmatter Agent - Workflow Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .node {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .node:hover {
+            transform: translateY(-5px);
+        }
+        
+        .node.start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .node.process {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .node.decision {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            padding: 30px 40px;
+        }
+        
+        .node.action {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+        
+        .node.end {
+            background: linear-gradient(135deg, #96fbc4 0%, #f9f586 100%);
+            color: #333;
+        }
+        
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #666;
+            margin: 10px 0;
+        }
+        
+        .branch {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        
+        .branch-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            margin: 0 20px;
+        }
+        
+        .branch-label {
+            background: #333;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+        }
+        
+        .details {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .details h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .details li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Markdown Frontmatter Agent Workflow</h1>
+        
+        <div class="workflow">
+            <!-- Start -->
+            <div class="node start">
+                <strong>Start Agent</strong><br>
+                Initialize OpenHands SDK with Claude Sonnet
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Directory Scan -->
+            <div class="node process">
+                <strong>Scan Current Directory</strong><br>
+                Find all *.md files (no subdirectories)
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- File Processing Loop -->
+            <div class="node process">
+                <strong>For Each Markdown File</strong><br>
+                Process files sequentially
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Parse Frontmatter -->
+            <div class="node action">
+                <strong>Parse Existing Frontmatter</strong><br>
+                Extract YAML frontmatter (if present)
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Check Fields -->
+            <div class="node decision">
+                <strong>Missing title or description?</strong>
+            </div>
+            
+            <!-- Branch for Yes/No -->
+            <div class="branch">
+                <div class="branch-arrow">
+                    <div class="branch-label">YES</div>
+                    <div class="arrow"></div>
+                    
+                    <div class="node action">
+                        <strong>Analyze Content with LLM</strong><br>
+                        Extract key information from markdown
+                    </div>
+                    
+                    <div class="arrow"></div>
+                    
+                    <div class="node action">
+                        <strong>Generate Missing Fields</strong><br>
+                        Title (< 5 words)<br>
+                        Description (< 20 words)
+                    </div>
+                    
+                    <div class="arrow"></div>
+                    
+                    <div class="node action">
+                        <strong>Merge Frontmatter</strong><br>
+                        Combine new fields with existing
+                    </div>
+                    
+                    <div class="arrow"></div>
+                    
+                    <div class="node action">
+                        <strong>Update File</strong><br>
+                        Write new frontmatter to file
+                    </div>
+                </div>
+                
+                <div class="branch-arrow">
+                    <div class="branch-label">NO</div>
+                    <div class="arrow"></div>
+                    
+                    <div class="node action">
+                        <strong>Skip File</strong><br>
+                        File already has complete frontmatter
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Convergence -->
+            <div class="arrow"></div>
+            
+            <div class="node process">
+                <strong>Log Results</strong><br>
+                Record processing status for file
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="node decision">
+                <strong>More files to process?</strong>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- End -->
+            <div class="node end">
+                <strong>Complete</strong><br>
+                Display summary of processed files
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <span>Start/End Points</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <span>Core Processing</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                <span>Decision Points</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                <span>Actions</span>
+            </div>
+        </div>
+        
+        <div class="details">
+            <h3>Key Implementation Details</h3>
+            <ul>
+                <li><strong>LLM Integration:</strong> Uses OpenHands SDK with Claude Sonnet for intelligent content analysis</li>
+                <li><strong>File Safety:</strong> Validates YAML before writing, preserves existing frontmatter structure</li>
+                <li><strong>Content Analysis:</strong> Analyzes entire markdown content to generate meaningful titles and descriptions</li>
+                <li><strong>Error Handling:</strong> Graceful degradation - continues processing if individual files fail</li>
+                <li><strong>Logging:</strong> Comprehensive progress reporting and result summary</li>
+                <li><strong>Constraints:</strong> Title < 5 words, Description < 20 words, YAML frontmatter format</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

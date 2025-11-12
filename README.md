@@ -19,6 +19,11 @@ Path: `sdk_builder/`
 
 This repo provides a workspace for building agents using the OpenHands Software Agent SDK.
 
+### Markdown Frontmatter Agent
+Path: `output/`
+
+An intelligent agent built with the OpenHands SDK that automatically analyzes markdown files and ensures they have proper YAML frontmatter with title and description fields. Demonstrates AI-powered content analysis and file processing capabilities.
+
 ## Getting Started
 
 Each directory contains a self-contained use case with its own README and setup instructions. Navigate to any use case directory to get started.
