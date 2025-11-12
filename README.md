@@ -14,6 +14,11 @@ Path: `.github/workflows/pr-review.yml`
 
 This repo is configured to use the OpenHands Agent SDK to perform code reviews. Simply add the `review-this` label to PRs in this repo to demonstrate the feature.
 
+### SDK builder
+Path: `sdk_builder/`
+
+This repo provides a workspace for building agents using the OpenHands Software Agent SDK.
+
 ## Getting Started
 
 Each directory contains a self-contained use case with its own README and setup instructions. Navigate to any use case directory to get started.
