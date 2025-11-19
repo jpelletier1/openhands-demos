@@ -2,6 +2,7 @@
 name: Agent Builder and Interviewer
 triggers:
   - /agent-builder
+  - /Agent Builder and Interviewer
 inputs:
   - name: INITIAL_PROMPT
     description: "Initial SDK requirements"
@@ -33,3 +34,5 @@ After the plan is generated, please ask the user if they are ready to generate t
 Additional guidelines:
 - Unless the user has specified otherwise, the default LLM to use is: openhands/claude-sonnet-4-5-20250929. This can be configured via the "LLM_BASE_MODE" environment variable.
 - The LLM API Key should be stored as an environment variable named "LLM_API_KEY"
+
+If the user didn't provide any of these variables, ask the user to provide them first before the agent can proceed with the task.
