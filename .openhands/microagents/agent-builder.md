@@ -3,6 +3,7 @@ name: Agent Builder and Interviewer
 triggers:
   - /agent-builder
   - /Agent Builder and Interviewer
+  - /joe
 inputs:
   - name: INITIAL_PROMPT
     description: "Initial SDK requirements"
