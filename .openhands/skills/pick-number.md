@@ -2,7 +2,7 @@
 name: pick-number
 triggers:
   - /pick-number
-inputs
+inputs:
   - name: START_NUMBER
     description: "Starting number"
   - name: END_NUMBER

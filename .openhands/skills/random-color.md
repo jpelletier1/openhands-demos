@@ -1,7 +1,7 @@
 ---
 name: random_color
 triggers:
-  - /random_color
+  - /random-color
 ---
 
 Generate the name of a random color.
