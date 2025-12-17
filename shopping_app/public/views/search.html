@@ -1,0 +1,28 @@
+<div class="search-page">
+  <div class="search-section">
+    <h2>Search Products</h2>
+    <div class="search-bar">
+      <input 
+        type="text" 
+        ng-model="searchQuery" 
+        placeholder="Search for products..." 
+        ng-keypress="$event.keyCode == 13 && search()"
+      />
+      <button ng-click="search()">Search</button>
+    </div>
+  </div>
+
+  <div class="results-section">
+    <h3>Search Results for "{{searchQuery}}"</h3>
+    <p ng-if="results.length === 0">No products found matching your search.</p>
+    
+    <div class="product-grid" ng-if="results.length > 0">
+      <div class="product-card" ng-repeat="product in results" ng-click="goToProduct(product.id)">
+        <div class="product-image">{{product.image}}</div>
+        <h4>{{product.name}}</h4>
+        <p class="price">${{product.price}}</p>
+        <p class="description-preview">{{product.description | limitTo:60}}...</p>
+      </div>
+    </div>
+  </div>
+</div>
