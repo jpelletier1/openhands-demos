@@ -4,10 +4,13 @@ A collection of example use cases demonstrating the capabilities of [OpenHands](
 
 ## Use Cases
 
-### Angular 1.2 Refactoring
+### Angular 1.x to Angular 20 Refactoring
 Path: `example_refactoring/`
 
-A shopping website built with Angular 1.0, designed to demonstrate AI-powered code refactoring and modernization.
+A shopping website originally built with Angular 1.x, designed to demonstrate AI-powered code refactoring and modernization. The project includes both the original AngularJS application and a fully refactored Angular 20 version, showcasing complete framework migration while preserving all functionality.
+
+**Original App**: `example_refactoring/public/` - AngularJS 1.x shopping demo
+**Refactored App**: `example_refactoring/angular20-app/` - Modern Angular 20 application with TypeScript, reactive programming, and component-based architecture
 
 ### PR reviews
 Path: `.github/workflows/pr-review.yml`

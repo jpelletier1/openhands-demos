@@ -1,0 +1,28 @@
+<div class="cart-page">
+  <h2>Shopping Cart</h2>
+  
+  <div *ngIf="(cartItems$ | async)?.length === 0" class="empty-cart">
+    <p>Your cart is empty</p>
+    <button (click)="continueShopping()">Start Shopping</button>
+  </div>
+
+  <div *ngIf="(cartItems$ | async)?.length! > 0">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems$ | async; let i = index">
+        <div class="item-image">{{item.product.image}}</div>
+        <div class="item-info">
+          <h4 (click)="goToProduct(item.product.id)">{{item.product.name}}</h4>
+          <p class="item-price">${{item.product.price}} x {{item.quantity}}</p>
+        </div>
+        <div class="item-total">${{(item.product.price * item.quantity).toFixed(2)}}</div>
+        <button class="remove-btn" (click)="removeItem(i)">Remove</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="total">Total: ${{getTotal().toFixed(2)}}</div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+      <button class="continue-btn" (click)="continueShopping()">Continue Shopping</button>
+    </div>
+  </div>
+</div>

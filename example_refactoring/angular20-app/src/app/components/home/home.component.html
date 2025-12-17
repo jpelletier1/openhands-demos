@@ -1,0 +1,26 @@
+<div class="home-page">
+  <div class="search-section">
+    <h2>Welcome to ShopDemo</h2>
+    <div class="search-bar">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Search for products..." 
+        (keypress)="onKeyPress($event)"
+      />
+      <button (click)="search()">Search</button>
+    </div>
+  </div>
+
+  <div class="products-section">
+    <h3>Featured Products</h3>
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let product of products" (click)="goToProduct(product.id)">
+        <div class="product-image">{{product.image}}</div>
+        <h4>{{product.name}}</h4>
+        <p class="price">${{product.price}}</p>
+        <p class="description-preview">{{product.description | slice:0:60}}...</p>
+      </div>
+    </div>
+  </div>
+</div>

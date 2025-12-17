@@ -1,0 +1,12 @@
+<div class="container">
+  <header>
+    <div class="header-content">
+      <h1><a routerLink="/">ShopDemo</a></h1>
+      <div class="cart-icon" (click)="goToCart()">
+        🛒 Cart (<span>{{ cartCount$ | async }}</span>)
+      </div>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+</div>
