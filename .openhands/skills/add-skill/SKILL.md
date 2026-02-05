@@ -1,10 +1,8 @@
 ---
 name: add-skill
+description: A skill for adding an agent to the .openhands directory
 triggers:
   - /add-skill
-inputs:
-  - name: SKILL_NAME
-    description: "Skill name"
 ---
 
 Please create a new Agent Skill in the following directory: .openhands/skills/{{ SKILL_NAME }}.
