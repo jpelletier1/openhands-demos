@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    .todo-form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .todo-list {
+      list-style: none;
+      padding: 0;
+    }
+    .todo-item {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .todo-item.completed {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    .todo-info h3 {
+      margin: 0 0 5px 0;
+    }
+    .todo-info p {
+      margin: 0;
+      color: #666;
+    }
+    .actions button {
+      background: #2196F3;
+      margin-left: 5px;
+    }
+    .delete-btn {
+      background: #f44336 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>To Do App</h1>
+  
+  <div class="todo-form">
+    <h2>Add New Todo</h2>
+    <form action="/todos" method="POST">
+      <input type="text" name="title" placeholder="Title" required>
+      <textarea name="description" placeholder="Description"></textarea>
+      <button type="submit">Add Todo</button>
+    </form>
+  </div>
+  
+  <ul class="todo-list">
+    <% todos.forEach(todo => { %>
+      <li class="todo-item <%= todo.completed ? 'completed' : '' %>">
+        <div class="todo-info">
+          <h3><%= todo.title %></h3>
+          <p><%= todo.description %></p>
+          <small>Created: <%= todo.createdAt %></small>
+        </div>
+        <div class="actions">
+          <% if (!todo.completed) { %>
+            <form action="/todos/<%= todo.id %>/complete" method="POST" style="display:inline;">
+              <button type="submit">Complete</button>
+            </form>
+          <% } %>
+          <form action="/todos/<%= todo.id %>" method="POST" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
