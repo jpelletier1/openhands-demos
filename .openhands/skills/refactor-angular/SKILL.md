@@ -1,8 +1,6 @@
 ---
-name: refactor_angular
-version: 1.0.0
-author: openhands
-agent: CodeActAgent
+name: refactor-angular
+description: Refactor Angular from one version to another. 
 triggers:
 - /refactor_angular
 inputs:
@@ -15,6 +13,8 @@ inputs:
 Please work within the {{ DIRECTORY }}. This directory contains legacy Angular code. 
 
 Your job is to refactor this code to Angular {{ ANGULAR VERSION }}.
+
+If the user does not provide the directory or Angular Version, please be sure to ask for this information.
 
 When you are complete with refactoring, please generate a summary of the files and methods you have changed. 
 
