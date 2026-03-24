@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -9,9 +10,10 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./search.component.css'],
   standalone: false
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchQuery: string = '';
   results: Product[] = [];
+  private queryParamsSubscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,14 +22,20 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       this.searchQuery = params['q'] || '';
       this.performSearch();
     });
   }
 
+  ngOnDestroy(): void {
+    this.queryParamsSubscription?.unsubscribe();
+  }
+
   performSearch(): void {
-    this.results = this.productService.searchProducts(this.searchQuery);
+    this.productService.searchProducts(this.searchQuery).subscribe(results => {
+      this.results = results;
+    });
   }
 
   search(): void {

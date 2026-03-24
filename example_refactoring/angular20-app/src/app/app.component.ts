@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +16,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private cartService: CartService
   ) {
-    this.cartCount$ = this.cartService.getCart().pipe(
-      map(items => items.length)
-    );
+    this.cartCount$ = this.cartService.getCartCount();
   }
 
   ngOnInit(): void {}

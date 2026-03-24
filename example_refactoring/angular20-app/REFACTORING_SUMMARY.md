@@ -55,20 +55,20 @@ angular20-app/
 - **Added TypeScript interfaces** for type safety
 - **Implemented RxJS observables** for reactive programming
 - **Methods refactored:**
-  - `getProducts()` - Returns Observable<Product[]>
-  - `getProduct(id)` - Returns Observable<Product | undefined>
-  - `searchProducts(query)` - Returns Observable<Product[]>
+  - `getAllProducts()` - Returns `Observable<Product[]>`
+  - `getProductById(id)` - Returns `Observable<Product | null>`
+  - `searchProducts(query)` - Returns `Observable<Product[]>`
 
 #### CartService (`src/app/services/cart.service.ts`)
 - **Converted from AngularJS service to Angular 20 injectable service**
 - **Implemented reactive state management** using BehaviorSubject
 - **Added TypeScript interfaces** for CartItem model
 - **Methods refactored:**
-  - `getCartItems()` - Returns Observable<CartItem[]>
-  - `addToCart(product)` - Adds product to cart
-  - `removeFromCart(productId)` - Removes product from cart
-  - `getCartCount()` - Returns Observable<number>
-  - `getCartTotal()` - Returns Observable<number>
+  - `getCart()` - Returns `Observable<CartItem[]>`
+  - `addToCart(product)` - Adds a product to the cart
+  - `removeFromCart(index)` - Removes an item from the cart by index
+  - `getCartCount()` - Returns `Observable<number>`
+  - `getTotal()` - Returns the cart total as a number
 
 ### 3. Components Refactoring
 #### AppComponent (`src/app/app.component.ts`)
@@ -141,7 +141,7 @@ angular20-app/
 
 ### 7. TypeScript Integration
 - **Created TypeScript interfaces:**
-  - `Product` interface with id, name, price, description, emoji
+  - `Product` interface with id, name, price, description, image
   - `CartItem` interface with product and quantity
 - **Added strict type checking** throughout the application
 - **Implemented proper dependency injection** with TypeScript decorators

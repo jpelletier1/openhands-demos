@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -29,23 +30,25 @@ export class ProductService {
     }
   ];
 
-  getAllProducts(): Product[] {
-    return this.products;
+  getAllProducts(): Observable<Product[]> {
+    return of([...this.products]);
   }
 
-  getProductById(id: number): Product | null {
-    return this.products.find(product => product.id === id) || null;
+  getProductById(id: number): Observable<Product | null> {
+    return of(this.products.find(product => product.id === id) || null);
   }
 
-  searchProducts(query: string): Product[] {
+  searchProducts(query: string): Observable<Product[]> {
     if (!query) {
-      return this.products;
+      return of([...this.products]);
     }
     
     const lowerQuery = query.toLowerCase();
-    return this.products.filter(product =>
-      product.name.toLowerCase().includes(lowerQuery) ||
-      product.description.toLowerCase().includes(lowerQuery)
+    return of(
+      this.products.filter(product =>
+        product.name.toLowerCase().includes(lowerQuery) ||
+        product.description.toLowerCase().includes(lowerQuery)
+      )
     );
   }
 }

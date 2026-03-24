@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -11,9 +12,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./product.component.css'],
   standalone: false
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   product: Product | null = null;
   added: boolean = false;
+  private routeParamsSubscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,14 +26,20 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const productId = parseInt(params['id']);
-      this.product = this.productService.getProductById(productId);
-      
-      if (!this.product) {
-        this.router.navigate(['/']);
-      }
+    this.routeParamsSubscription = this.route.params.subscribe(params => {
+      const productId = parseInt(params['id'], 10);
+      this.productService.getProductById(productId).subscribe(product => {
+        this.product = product;
+
+        if (!this.product) {
+          this.router.navigate(['/']);
+        }
+      });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.routeParamsSubscription?.unsubscribe();
   }
 
   addToCart(): void {
