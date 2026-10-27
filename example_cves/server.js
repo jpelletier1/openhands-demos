@@ -5,26 +5,7 @@ const lodash = require('lodash');
 const moment = require('moment');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const path = require('path');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-const SECRET = 'super-secret-key-123';
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(session({
-  secret: SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
-
-// View engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+]ws'));
 
 // In-memory todo storage
 let todos = [];
