@@ -9,6 +9,11 @@ Path: `example_refactoring/`
 
 A shopping website built with Angular 1.0, designed to demonstrate AI-powered code refactoring and modernization.
 
+### Todo App
+Path: `example_todo_app/`
+
+A simple todo list application with add, complete, and delete functionality, plus the ability to change the list name.
+
 ### PR reviews
 Path: `.github/workflows/pr-review.yml`
 
