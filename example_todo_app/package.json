@@ -1,0 +1,15 @@
+{
+  "name": "example-todo-app",
+  "version": "1.0.0",
+  "description": "A simple todo app demo using Node.js and Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["todo", "demo"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
